@@ -71,8 +71,10 @@ def scraper():
     linksoup = bs(html , 'html.parser')
     main_link = linksoup.find_all('div', class_='item')
     hemisphere_img_links=[]
+    #Using the function find all from Beautiful soup scrap the main link
+
     for link in main_link:
-        hemititle = link.find('h3').text
+        title = link.find('h3').text
         astrolink = link.find('a')['href']
         hem_img_link= short_usgas+astrolink
         browser.visit(hem_img_link)
@@ -81,8 +83,8 @@ def scraper():
         hemisphere_original= hemisoup.find('div',class_='downloads')
         hemisphere_img_link=hemisphere_original.find('a')['href']
         print(hemisphere_img_link)
-        astro_image=dict({'title':hemititle, 'img_url':hemisphere_img_link})
-        hemisphere_img_links.append(astro_image)
+        astro_image=dict({'title':title, 'img_url':hemisphere_img_link})
+        hemisphere_img_links.append(astro_image) 
         hemisphere_img_links
 
         # Store data in a dictionary
